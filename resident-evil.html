@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
+<body id="inicio">
   <header class="site-header">
     <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
     <a class="logo" href="index.html#inicio" aria-label="Zetsuy2k, início"><img class="logo-image" src="assets/zetsuy2k-mark.png" alt="Zetsuy2k"></a>
@@ -23,6 +23,13 @@
       <div class="menu-categories" aria-label="Animes e jogos disponíveis"><a href="resident-evil.html">RESIDENT EVIL</a><a href="cyberpunk.html">CYBERPUNK</a></div>
     </nav>
   </header>
+
+  <aside class="promo-strip" aria-label="Promoção Black Friday">
+    <span class="promo-name">BLACK FRIDAY</span>
+    <a href="resident-evil.html">CAMISETA <strong>R$ 40,00</strong></a>
+    <span class="promo-divider" aria-hidden="true">✦</span>
+    <a href="cyberpunk.html">MOLETOM <strong>R$ 120,00</strong></a>
+  </aside>
 
   <main class="product-detail-page">
     <a class="detail-back" href="index.html">← VOLTAR PARA A PÁGINA INICIAL</a>
@@ -46,7 +53,8 @@
       <div class="product-detail-copy">
         <div class="resident-banner-frame"><img class="resident-banner" src="assets/leon-banner.jpg" alt="Leon Kennedy em destaque no wallpaper de Resident Evil 4" loading="lazy"></div>
         <h1 id="product-title">CAMISETA<br>RESIDENT EVIL</h1>
-        <p class="detail-price">R$ 80,00</p>
+        <p class="sale-tag">BLACK FRIDAY</p>
+        <p class="detail-price"><span>R$ 40,00</span> <del>R$ 80,00</del></p>
         <p>Uma peça oversized com arte autoral inspirada no universo Resident Evil. Feita para levar referências de games para o streetwear do dia a dia.</p>
         <ul class="detail-specs">
           <li>MODELAGEM OVERSIZED</li>
@@ -56,6 +64,26 @@
       </div>
     </section>
   </main>
+
+  <footer class="site-footer" id="contato">
+    <div class="footer-main">
+      <div class="footer-signoff">
+        <p class="eyebrow"><span class="pulse"></span> TRANSMISSÃO ABERTA · Z / 001</p>
+        <h2>VISTA SUA<br><span>LORE.</span></h2>
+        <p>Escolha sua próxima peça e fale direto com a Zetsuy2k.</p>
+        <a class="footer-cta" href="https://wa.me/5516991277349?text=Opa%2C%20vi%20o%20site%20da%20Zetsuy2k%20e%20quero%20saber%20mais%20sobre%20as%20pe%C3%A7as." target="_blank" rel="noreferrer">FALAR SOBRE UMA PEÇA <span>↗</span></a>
+      </div>
+      <div class="footer-nav-area">
+        <nav class="footer-links" aria-label="Links do rodapé">
+          <div><span class="footer-label">EXPLORAR</span><a href="index.html#inicio">INÍCIO</a><a href="index.html#drop">LANÇAMENTOS</a></div>
+          <div><span class="footer-label">COLEÇÃO</span><a href="resident-evil.html">RESIDENT EVIL</a><a href="cyberpunk.html">CYBERPUNK</a></div>
+          <div><span class="footer-label">ACOMPANHE</span><a href="https://www.instagram.com/zetsuy2k/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a><a href="https://wa.me/5516991277349" target="_blank" rel="noreferrer">WHATSAPP ↗</a></div>
+        </nav>
+        <p class="footer-letter">Zetsuy2k &eacute; uma marca que foi criada no interior de S&atilde;o Paulo para atender todo o tipo de p&uacute;blico que goste do estilo streetwear e Y2K, com estampas totalmente personalizadas e autorais de animes, jogos e entre outros.</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><a class="footer-brand" href="index.html#inicio">ZETSUY2K<span>®</span></a><span>FEITO NO INTERIOR DE S&atilde;O PAULO &middot; 2026</span><a class="footer-top" href="#inicio" aria-label="Voltar ao topo">VOLTAR AO TOPO ↑</a></div>
+  </footer>
 
   <div class="image-lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
     <button class="lightbox-close" type="button" aria-label="Fechar imagem ampliada">×</button>

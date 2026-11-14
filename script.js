@@ -54,6 +54,55 @@
     });
   }
 
+  function initializeSmoothAnchorScroll() {
+    let scrollFrame = null;
+    let previousScrollBehavior = '';
+
+    document.querySelectorAll('a[href*="#"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const destination = new URL(link.href, window.location.href);
+        if (destination.origin !== window.location.origin
+          || destination.pathname !== window.location.pathname
+          || destination.search !== window.location.search
+          || !destination.hash) return;
+
+        const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)));
+        if (!target) return;
+
+        event.preventDefault();
+        if (scrollFrame !== null) window.cancelAnimationFrame(scrollFrame);
+        else previousScrollBehavior = document.documentElement.style.scrollBehavior;
+
+        const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0;
+        const promoHeight = document.querySelector('.promo-strip')?.getBoundingClientRect().height ?? 0;
+        const startY = window.scrollY;
+        const top = Math.max(0, target.getBoundingClientRect().top + startY - headerHeight - promoHeight - 12);
+        const distance = top - startY;
+        const duration = 650;
+        let startTime = null;
+
+        document.documentElement.style.scrollBehavior = 'auto';
+        function animateScroll(time) {
+          if (startTime === null) startTime = time;
+          const progress = Math.min((time - startTime) / duration, 1);
+          const eased = progress < 0.5
+            ? 4 * progress ** 3
+            : 1 - ((-2 * progress + 2) ** 3) / 2;
+          window.scrollTo(0, startY + distance * eased);
+
+          if (progress < 1) {
+            scrollFrame = window.requestAnimationFrame(animateScroll);
+          } else {
+            scrollFrame = null;
+            document.documentElement.style.scrollBehavior = previousScrollBehavior;
+          }
+        }
+
+        scrollFrame = window.requestAnimationFrame(animateScroll);
+      });
+    });
+  }
+
   function initializeLightbox() {
     const element = document.querySelector(selectors.lightbox);
     if (!element) return null;
@@ -134,7 +183,6 @@
 
       photo.classList.toggle('product-cutout', Boolean(slide.product));
       gallery.classList.toggle('product-slide-active', Boolean(slide.product));
-      photo.classList.add('is-changing');
 
       thumbnails.forEach((thumbnail, thumbnailIndex) => {
         const isActive = thumbnailIndex === activeIndex;
@@ -145,7 +193,6 @@
 
       const finishLoading = () => {
         if (requestId !== imageRequest) return;
-        photo.classList.remove('is-changing');
         gallery.classList.add('is-ready');
       };
 
@@ -224,6 +271,7 @@
   }
 
   initializeMenu();
+  initializeSmoothAnchorScroll();
   const lightbox = initializeLightbox();
   document.querySelectorAll(selectors.galleries).forEach((gallery) => {
     initializeGallery(gallery, lightbox);
